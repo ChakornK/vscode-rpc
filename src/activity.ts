@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { ActivityType, Client } from "./rpc/client";
 import { getAsset } from "./assets";
+import { log } from "./logger";
 
 interface Activity {
   state?: string;
@@ -72,10 +73,31 @@ const activityData: Activity = {
   type: ActivityType.Playing,
 };
 
+let reconnectInterval: NodeJS.Timeout;
+const reconnectFreq = 10000;
+const reconnect = async () => {
+  log.info("Reconnecting...");
+  try {
+    await client.login();
+  } catch {}
+};
 client.on("ready", () => {
+  try {
+    clearInterval(reconnectInterval);
+  } catch {}
+  log.info("Connected");
   setIdle();
 });
-client.login();
+client.on("close", () => {
+  reconnectInterval = setInterval(reconnect, reconnectFreq);
+});
+(async () => {
+  try {
+    await client.login();
+  } catch {
+    reconnectInterval = setInterval(reconnect, reconnectFreq);
+  }
+})();
 
 vscode.window.onDidChangeActiveTextEditor((editor) => {
   if (!editor) {

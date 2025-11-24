@@ -122,6 +122,9 @@ export class Client extends EventEmitter {
         this.emit((message as any).evt, message.data);
       }
     });
+    this.#transport.on("close", () => {
+      this.emit("close");
+    });
   }
 
   // LOGIN

@@ -201,7 +201,7 @@ export class IpcTransport extends EventEmitter {
       }
     });
 
-    this.on("close", (reason) => {
+    this.socket.on("close", (reason) => {
       this.socket = undefined;
       this.client.emit("close", reason);
     });
