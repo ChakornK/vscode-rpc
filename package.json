@@ -1,6 +1,6 @@
 {
-  "name": "vscode-rpc",
-  "displayName": "Discord Rich Presence",
+  "name": "vsc-discord-rpc",
+  "displayName": "Discord RPC",
   "description": "A simple no-config Discord RPC extension",
   "version": "0.0.1",
   "icon": "icon.png",
@@ -27,8 +27,7 @@
     "Other"
   ],
   "extensionKind": [
-    "ui",
-    "workspace"
+    "ui"
   ],
   "galleryBanner": {
     "color": "#5865F2",

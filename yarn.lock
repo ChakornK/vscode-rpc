@@ -2754,9 +2754,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-rpc@workspace:.":
+"vsc-discord-rpc@workspace:.":
   version: 0.0.0-use.local
-  resolution: "vscode-rpc@workspace:."
+  resolution: "vsc-discord-rpc@workspace:."
   dependencies:
     "@types/mocha": "npm:^10.0.10"
     "@types/node": "npm:^24.10.1"
