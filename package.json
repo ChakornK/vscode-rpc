@@ -1,6 +1,6 @@
 {
   "name": "vscode-rpc",
-  "displayName": "vscode-rpc",
+  "displayName": "Discord Rich Presence",
   "description": "A simple no-config Discord RPC extension",
   "version": "0.0.1",
   "icon": "icon.png",
@@ -19,7 +19,8 @@
     "rich",
     "presence",
     "rpc",
-    "status"
+    "status",
+    "activity"
   ],
   "categories": [
     "Visualization",
