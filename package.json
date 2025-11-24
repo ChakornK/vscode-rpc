@@ -1,0 +1,56 @@
+{
+  "name": "vscode-rpc",
+  "displayName": "vscode-rpc",
+  "description": "A simple no-config Discord RPC extension",
+  "version": "0.0.1",
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": "^1.106.1"
+  },
+  "keywords": [
+    "discord",
+    "rich",
+    "presence",
+    "rpc",
+    "status"
+  ],
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "galleryBanner": {
+    "color": "#5865F2",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "yarn run check-types && yarn run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "yarn run check-types && yarn run lint && node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "esbuild-plugin-yaml": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.10.1",
+    "@types/vscode": "^1.106.1",
+    "esbuild": "^0.27.0",
+    "eslint": "^9.39.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.47.0"
+  },
+  "packageManager": "yarn@4.12.0"
+}

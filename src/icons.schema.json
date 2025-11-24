@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "config": {
+      "title": "Icon configurations",
+      "description": "Association of file extension to icon name",
+      "type": "object",
+      "patternProperties": {
+        "[a-z0-9]": {
+          "title": "Icon configuration",
+          "description": "Configuration for a file extension",
+          "additionalProperties": false,
+          "properties": {
+            "default": {
+              "description": "Default icon for file extension"
+            },
+            "custom": {
+              "title": "Exceptions",
+              "description": "Custom icons for special files",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "asset": {
+                    "type": "string",
+                    "description": "Icon to be used"
+                  },
+                  "matcher": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "type": {
+                        "description": "Type of matcher",
+                        "type": "string",
+                        "enum": ["string", "regex"]
+                      },
+                      "content": {
+                        "description": "Matcher",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "aliases": {
+      "title": "Icon aliases",
+      "description": "Alternate file extensions",
+      "type": "object",
+      "patternProperties": {
+        "[a-z0-9]": {
+          "description": "Name of primary file extension",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Alternate file extension"
+          }
+        }
+      }
+    }
+  }
+}

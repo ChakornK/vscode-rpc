@@ -1,0 +1,426 @@
+config:
+  aep:
+    default: adobe_afterfx
+  ai:
+    default: adobe_illustrator
+  apk:
+    default: android
+  bp:
+    default: android
+  c:
+    default: c
+  clj:
+    default: clojure
+  coffee:
+    default: coffeescript
+  cpp:
+    default: cpp
+  cr:
+    default: crystal
+  cs:
+    default: csharp
+  css:
+    default: css
+  d:
+    default: d
+  dart:
+    default: dart
+  ex:
+    default: elixir
+  erl:
+    default: erlang
+  fla:
+    default: adobe_animate
+  fr:
+    default: frege
+  fs:
+    default: fsharp
+  git:
+    default: git
+  go:
+    default: go
+  hc:
+    default: holyc
+  hgignore:
+    default: mercurial
+  hs:
+    default: haskell
+  html:
+    default: html
+  idr:
+    default: idris
+  indd:
+    default: adobe_indesign
+  ini:
+    default: text
+    custom:
+      - asset: mercurial
+        matcher:
+          type: string
+          content: mercurial.ini
+  java:
+    default: java
+  js:
+    default: javascript
+    custom:
+      - asset: esbuild
+        matcher:
+          type: string
+          content: esbuild.
+      - asset: pnpm
+        matcher:
+          type: string
+          content: ".pnpmfile."
+      - asset: rollup
+        matcher:
+          type: string
+          content: rollup.config.
+      - asset: vercel
+        matcher:
+          type: string
+          content: next.config.
+      - asset: tailwind
+        matcher:
+          type: string
+          content: tailwind.
+      - asset: uno
+        matcher:
+          type: regex
+          content: "/uno(css)?.config./"
+      - asset: vite
+        matcher:
+          type: string
+          content: vite.config.
+      - asset: vue
+        matcher:
+          type: string
+          content: vue.config.
+      - asset: webpack
+        matcher:
+          type: string
+          content: webpack.
+      - asset: windi
+        matcher:
+          type: string
+          content: windi.config.
+      - asset: yarn
+        matcher:
+          type: string
+          content: yarn.config.
+  json:
+    default: json
+    custom:
+      - asset: deno
+        matcher:
+          type: string
+          content: deno.
+      - asset: fly
+        matcher:
+          type: string
+          content: fly.json
+      - asset: netlify
+        matcher:
+          type: string
+          content: netlify.json
+      - asset: npm
+        matcher:
+          type: regex
+          content: "/package(-lock)?.json/i"
+      - asset: railway
+        matcher:
+          type: string
+          content: railway.json
+      - asset: vercel
+        matcher:
+          type: string
+          content: vercel.json
+      - asset: windi
+        matcher:
+          type: string
+          content: windi.config.
+  jsx:
+    default: react
+  jl:
+    default: julia
+  kt:
+    default: kotlin
+  lock:
+    default: lock
+    custom:
+      - asset: bun
+        matcher:
+          type: string
+          content: bun.lock
+      - asset: rust
+        matcher:
+          type: string
+          content: Cargo.lock
+      - asset: deno
+        matcher:
+          type: string
+          content: deno.lock
+      - asset: yarn
+        matcher:
+          type: string
+          content: yarn.lock
+  log:
+    default: text
+    custom:
+      - asset: yarn
+        matcher:
+          type: string
+          content: yarn-error.log
+  ls:
+    default: livescript
+  md:
+    default: markdown
+  ml:
+    default: ocaml
+  nim:
+    default: nim
+  npmignore:
+    default: npm
+  npmrc:
+    default: npm
+  php:
+    default: php
+  psd:
+    default: adobe_photoshop
+  ps1:
+    default: powershell
+  purs:
+    default: purescript
+  py:
+    default: python
+  rkt:
+    default: racket
+  rb:
+    default: ruby
+  red:
+    default: red
+  rs:
+    default: rust
+  sass:
+    default: sass
+  scala:
+    default: scala
+  swift:
+    default: swift
+  toml:
+    default: toml
+    custom:
+      - asset: rust
+        matcher:
+          type: string
+          content: Cargo.toml
+      - asset: fly
+        matcher:
+          type: string
+          content: fly.toml
+      - asset: netlify
+        matcher:
+          type: string
+          content: netlify.toml
+      - asset: railway
+        matcher:
+          type: string
+          content: railway.toml
+  ts:
+    default: typescript
+    custom:
+      - asset: esbuild
+        matcher:
+          type: string
+          content: esbuild.
+      - asset: rollup
+        matcher:
+          type: string
+          content: rollup.config.
+      - asset: vercel
+        matcher:
+          type: string
+          content: next.config.
+      - asset: tailwind
+        matcher:
+          type: string
+          content: tailwind.
+      - asset: uno
+        matcher:
+          type: regex
+          content: "/uno(css)?.config./"
+      - asset: vite
+        matcher:
+          type: string
+          content: vite.config.
+      - asset: vue
+        matcher:
+          type: string
+          content: vue.config.
+      - asset: webpack
+        matcher:
+          type: string
+          content: webpack.
+      - asset: windi
+        matcher:
+          type: string
+          content: windi.config.
+      - asset: yarn
+        matcher:
+          type: string
+          content: yarn.config.
+  v:
+    default: v
+  vercelignore:
+    default: vercel
+  vue:
+    default: vue
+  wat:
+    default: wasm
+  xd:
+    default: adobe_xd
+  xml:
+    default: xml
+    custom:
+      - asset: android
+        matcher:
+          type: string
+          content: androidmanifest.xml
+  yaml:
+    default: yaml
+    custom:
+      - asset: fly
+        matcher:
+          type: string
+          content: fly.y
+      - asset: gitlab
+        matcher:
+          type: string
+          content: gitlab-ci.y
+      - asset: netlify
+        matcher:
+          type: string
+          content: netlify.y
+      - asset: pnpm
+        matcher:
+          type: regex
+          content: "/pnpm-w+.y/"
+      - asset: yarn
+        matcher:
+          type: string
+          content: ".yarnrc.y"
+      - asset: github
+        matcher:
+          type: regex
+          content: "/.github/workflows/.+.y/"
+  yarnrc:
+    default: yarn
+  zig:
+    default: zig
+
+aliases:
+  apk:
+    - apks
+    - smali
+    - dex
+  c:
+    - a
+    - h
+    - o
+  clj:
+    - cljc
+    - cljd
+    - cljr
+    - cljs
+    - edn
+  ex:
+    - exs
+  erl:
+    - hrl
+  fla:
+    - apr
+    - as
+    - asc
+    - jsfl
+    - swf
+    - xfl
+  fs:
+    - fsi
+    - fsx
+    - fsscript
+  git:
+    - gitattributes
+    - gitconfig
+    - gitignore
+    - gitinclude
+    - gitkeep
+    - gitmessage
+    - gitmodules
+    - gitpreserve
+    - keep
+  hs:
+    - lhs
+  indd:
+    - indb
+    - indl
+  idr:
+    - lidr
+  js:
+    - cjs
+    - mjs
+  json:
+    - jsonc
+  jsx:
+    - tsx
+  lock:
+    - lockb
+  md:
+    - markdown
+    - mdx
+  ml:
+    - cmt
+    - cmti
+    - codoc
+    - mli
+    - odoc
+  nim:
+    - nims
+    - nimble
+  psd:
+    - psb
+  ps1:
+    - psd1
+    - psm1
+  py:
+    - pyc
+    - pyd
+    - pyi
+    - pyw
+    - pyz
+  rb:
+    - ru
+  red:
+    - reds
+  rs:
+    - rlib
+  sass:
+    - scss
+  scala:
+    - sc
+  ts:
+    - cts
+  v:
+    - vsh
+  vue:
+    - vuerc
+  wat:
+    - wasm
+  yaml:
+    - yml
+  yarnrc:
+    - yarnclean
+    - yarn-integrity
+  zig:
+    - zigr
+    - zir
+    - zon
+# yaml-language-server: $schema=icons.schema.json

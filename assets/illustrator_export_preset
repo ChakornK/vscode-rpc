@@ -1,0 +1,19 @@
+/collection1 {
+	/attributes {
+		/scale 240.0
+		/suffix [ 0
+
+		]
+		/fileformat 1
+		/scaleType 1
+	}
+	/canEdit 1
+	/canDelete 1
+}
+/Sketch {
+	/Version 0
+	/Description (vscode rpc)
+	/Owner ()
+}
+/NumberOfCollections 1
+/CatalogName (vscode rpc)
