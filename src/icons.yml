@@ -25,6 +25,8 @@ config:
     default: d
   dart:
     default: dart
+  dockerfile:
+    default: docker
   ex:
     default: elixir
   erl:
@@ -288,6 +290,10 @@ config:
   yaml:
     default: yaml
     custom:
+      - asset: docker
+        matcher:
+          type: regex
+          content: "/(docker-)?compose\\.y/"
       - asset: fly
         matcher:
           type: string
@@ -332,6 +338,8 @@ aliases:
     - cljr
     - cljs
     - edn
+  dockerfile:
+    - dockerignore
   ex:
     - exs
   erl:
