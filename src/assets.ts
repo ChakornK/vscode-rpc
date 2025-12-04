@@ -12,7 +12,7 @@ export const getAsset = ({ fileName, filePath, name }: { fileName?: string; file
     return undefined;
   }
 
-  const ext = fileName.split(".").pop();
+  const ext = fileName.split(".").pop()?.toLowerCase();
   if (!ext) {
     return undefined;
   }
