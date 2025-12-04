@@ -71,6 +71,10 @@ config:
         matcher:
           type: string
           content: esbuild.
+      - asset: eslint
+        matcher:
+          type: string
+          content: eslint.config.
       - asset: pnpm
         matcher:
           type: string
@@ -241,6 +245,10 @@ config:
         matcher:
           type: string
           content: esbuild.
+      - asset: eslint
+        matcher:
+          type: string
+          content: eslint.config.
       - asset: rollup
         matcher:
           type: string
@@ -423,6 +431,7 @@ aliases:
     - sc
   ts:
     - cts
+    - mts
   v:
     - vsh
   vue:
