@@ -79,6 +79,10 @@ config:
         matcher:
           type: string
           content: ".pnpmfile."
+      - asset: postcss
+        matcher:
+          type: string
+          content: postcss.config.
       - asset: rollup
         matcher:
           type: string
@@ -249,6 +253,10 @@ config:
         matcher:
           type: string
           content: eslint.config.
+      - asset: postcss
+        matcher:
+          type: string
+          content: postcss.config.
       - asset: rollup
         matcher:
           type: string
