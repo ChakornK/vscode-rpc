@@ -137,7 +137,7 @@ config:
       - asset: npm
         matcher:
           type: regex
-          content: "/package(-lock)?.json/i"
+          content: "/package(-lock)?.json/"
       - asset: railway
         matcher:
           type: string
