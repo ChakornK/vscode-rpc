@@ -5,6 +5,8 @@ config:
     default: adobe_illustrator
   apk:
     default: android
+  artisan:
+    default: laravel
   bp:
     default: android
   c:
@@ -186,6 +188,11 @@ config:
     default: npm
   php:
     default: php
+    custom:
+      - asset: laravel
+        matcher:
+          type: string
+          content: .blade.php
   psd:
     default: adobe_photoshop
   ps1:
