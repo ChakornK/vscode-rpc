@@ -1,6 +1,15 @@
 # Change Log
 
-All notable changes to the "vscode-rpc" extension will be documented in this file.
+## v0.0.2
+
+Added support for:
+
+- Docker
+- Laravel
+- Eslint
+- PostCSS
+- Astro
+- SVG
 
 ## v0.0.1
 
