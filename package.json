@@ -43,6 +43,7 @@
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
     "build": "yarn run check-types && node esbuild.js --production",
     "package": "vsce package --no-yarn",
+    "deploy": "vsce publish --no-yarn",
     "check-types": "tsc --noEmit",
     "lint": "eslint src"
   },
@@ -50,6 +51,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "25.0.3",
     "@types/vscode": "^1.107.0",
+    "@vscode/vsce": "^3.7.1",
     "esbuild": "^0.27.2",
     "esbuild-plugin-yaml": "^0.0.1",
     "eslint": "^9.39.2",
