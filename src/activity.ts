@@ -73,6 +73,23 @@ const activityData: Activity = {
   type: ActivityType.Playing,
 };
 
+const updateActivity = () => {
+  const t = vscode.window.activeTextEditor;
+  if (t && t.document && t.selection && t.document.uri.scheme !== "vscode-notebook-cell") {
+    return setFile(
+      t.document.fileName.replaceAll("\\", "/") || "Untitled",
+      t.document.fileName.split("/").pop()?.split("\\").pop() || "Untitled",
+      t.selection.start.line + 1,
+      t.selection.start.character + 1
+    );
+  }
+  const n = vscode.window.activeNotebookEditor;
+  if (n && n.notebook && n.selection) {
+    return setNotebook(n.selection.start + 1, n.notebook.cellCount);
+  }
+  return setIdle();
+};
+
 let reconnectInterval: NodeJS.Timeout;
 const reconnectFreq = 10000;
 const reconnect = async () => {
@@ -86,7 +103,7 @@ client.on("ready", () => {
     clearInterval(reconnectInterval);
   } catch {}
   log.info("Connected");
-  setIdle();
+  updateActivity();
 });
 client.on("close", () => {
   reconnectInterval = setInterval(reconnect, reconnectFreq);
@@ -99,39 +116,8 @@ client.on("close", () => {
   }
 })();
 
-vscode.window.onDidChangeActiveTextEditor((editor) => {
-  if (!editor) {
-    return;
-  }
-  const { document, selection } = editor;
-  // Ignore notebook cells, they have their own events
-  if (editor.document.uri.scheme === "vscode-notebook-cell") {
-    return;
-  }
-  setFile(
-    document.fileName.replaceAll("\\", "/") || "Untitled",
-    document.fileName.split("/").pop()?.split("\\").pop() || "Untitled",
-    selection.start.line + 1,
-    selection.start.character + 1
-  );
-});
-vscode.window.onDidChangeTextEditorSelection((event) => {
-  const { document, selection } = event.textEditor;
-  setFile(
-    document.fileName.replaceAll("\\", "/") || "Untitled",
-    document.fileName.split("/").pop()?.split("\\").pop() || "Untitled",
-    selection.start.line + 1,
-    selection.start.character + 1
-  );
-});
+vscode.window.onDidChangeActiveTextEditor(updateActivity);
+vscode.window.onDidChangeTextEditorSelection(updateActivity);
 
-vscode.window.onDidChangeActiveNotebookEditor((editor) => {
-  if (!editor) {
-    return;
-  }
-  setNotebook(editor.selection.start + 1, editor.notebook.cellCount);
-});
-vscode.window.onDidChangeNotebookEditorSelection((event) => {
-  const notebook = event.notebookEditor;
-  setNotebook(notebook.selection.start + 1, notebook.notebook.cellCount);
-});
+vscode.window.onDidChangeActiveNotebookEditor(updateActivity);
+vscode.window.onDidChangeNotebookEditorSelection(updateActivity);
