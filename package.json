@@ -2,7 +2,7 @@
   "name": "vsc-discord-rpc",
   "displayName": "Discord RPC",
   "description": "A simple no-config Discord RPC extension",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icon": "icon.png",
   "repository": {
     "type": "git",
