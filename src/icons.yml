@@ -227,6 +227,8 @@ config:
     default: sass
   scala:
     default: scala
+  svg:
+    default: svg
   swift:
     default: swift
   toml:
