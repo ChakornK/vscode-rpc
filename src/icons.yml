@@ -192,6 +192,8 @@ config:
     default: livescript
   lua:
     default: lua
+  luau:
+    default: luau
   md:
     default: markdown
   ml:
