@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.0.3
+
+Extension now detects the current file as soon as it starts and updates the activity status accordingly.
+
 ## v0.0.2
 
 Added support for:
