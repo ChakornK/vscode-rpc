@@ -7,6 +7,8 @@ config:
     default: android
   artisan:
     default: laravel
+  astro:
+    default: astro
   bp:
     default: android
   c:
@@ -67,6 +69,10 @@ config:
   js:
     default: javascript
     custom:
+      - asset: astro
+        matcher:
+          type: string
+          content: astro.config.
       - asset: esbuild
         matcher:
           type: string
@@ -245,6 +251,10 @@ config:
   ts:
     default: typescript
     custom:
+      - asset: astro
+        matcher:
+          type: string
+          content: astro.config.
       - asset: esbuild
         matcher:
           type: string
