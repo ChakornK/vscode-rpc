@@ -162,6 +162,8 @@ config:
     default: julia
   kt:
     default: kotlin
+  lisp:
+    default: lisp
   lock:
     default: lock
     custom:
@@ -420,6 +422,10 @@ aliases:
     - jsonc
   jsx:
     - tsx
+  lisp:
+    - cl
+    - el
+    - l
   lock:
     - lockb
   md:
