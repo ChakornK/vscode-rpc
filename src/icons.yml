@@ -190,6 +190,8 @@ config:
           content: yarn-error.log
   ls:
     default: livescript
+  lua:
+    default: lua
   md:
     default: markdown
   ml:
