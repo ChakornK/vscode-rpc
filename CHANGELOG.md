@@ -10,6 +10,10 @@ Added support for:
 - PostCSS
 - Astro
 - SVG
+- Lua
+- Luau
+- Nix
+- Lisp
 
 ## v0.0.1
 
