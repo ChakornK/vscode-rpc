@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "module": "Node16",
-    "target": "ES2022",
-    "lib": ["ES2022"],
+    "module": "nodenext",
+    "target": "esnext",
+    "lib": ["ESNext"],
+    "types": ["node"],
     "sourceMap": true,
     "rootDir": "src",
     "strict": true /* enable all strict type-checking options */

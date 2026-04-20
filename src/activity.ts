@@ -80,7 +80,7 @@ const updateActivity = () => {
       t.document.fileName.replaceAll("\\", "/") || "Untitled",
       t.document.fileName.split("/").pop()?.split("\\").pop() || "Untitled",
       t.selection.start.line + 1,
-      t.selection.start.character + 1
+      t.selection.start.character + 1,
     );
   }
   const n = vscode.window.activeNotebookEditor;
