@@ -36,6 +36,71 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "discord-rpc",
+          "title": "Discord RPC",
+          "icon": "assets/discord.svg"
+        }
+      ]
+    },
+    "views": {
+      "discord-rpc": [
+        {
+          "id": "discord-rpc-settings",
+          "name": "Presence Settings"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Discord RPC",
+      "properties": {
+        "discordRpc.showFile": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the active file name in Rich Presence."
+        },
+        "discordRpc.showLineNumbers": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show line and column numbers (:line:col)."
+        },
+        "discordRpc.showWorkspace": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show workspace/project name in icon tooltip."
+        },
+        "discordRpc.showElapsedTime": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show timer with elapsed editing time."
+        },
+        "discordRpc.showIdle": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show presence when no editor is open."
+        },
+        "discordRpc.smallImageText": {
+          "type": "string",
+          "default": "Visual Studio Code",
+          "description": "Hover text (tooltip) for the small Discord icon."
+        },
+        "discordRpc.idleText": {
+          "type": "string",
+          "default": "Idling",
+          "description": "Title/details text shown when idling or no editor is active."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "discordRpc.editTextSetting",
+        "title": "Discord RPC: Edit Text Setting"
+      }
+    ]
+  },
   "scripts": {
     "vscode:prepublish": "yarn run build",
     "watch": "npm-run-all -p watch:*",
@@ -50,7 +115,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "25.6.0",
-    "@types/vscode": "^1.116.0",
+    "@types/vscode": "^1.104.0",
     "@vscode/vsce": "^3.9.1",
     "esbuild": "^0.28.0",
     "esbuild-plugin-yaml": "^0.0.1",

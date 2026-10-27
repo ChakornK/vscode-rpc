@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { ActivityType, Client } from "./rpc/client";
 import { getAsset } from "./assets";
 import { log } from "./logger";
+import { CONFIG_SECTION, getSetting, getTextSetting } from "./settings";
 
 interface Activity {
   state?: string;
@@ -19,6 +20,7 @@ interface Activity {
   type?: ActivityType.Playing | ActivityType.Listening | ActivityType.Watching | ActivityType.Competing;
 }
 
+const startTimestamp = Date.now();
 const throttleTime = 10000; // 10 seconds
 let lastActivityChangeTime = 0;
 let setActivityTimer: NodeJS.Timeout;
@@ -30,34 +32,75 @@ const throttledSetActivity = () => {
     return;
   }
   lastActivityChangeTime = now;
+  if (getSetting("showElapsedTime")) {
+    activityData.timestamps = { start: startTimestamp };
+  } else {
+    activityData.timestamps = undefined;
+  }
   client.setActivity(activityData);
 };
 
+const getWorkspace = () => {
+  if (!getSetting("showWorkspace")) {
+    return undefined;
+  }
+  return vscode.workspace.name ? `Workspace: ${vscode.workspace.name}`.slice(0, 128) : undefined;
+};
+
+const getSmallText = () => getTextSetting("smallImageText") || undefined;
+
 const setIdle = () => {
+  if (!getSetting("showIdle")) {
+    client.clearActivity();
+    return;
+  }
   Object.assign(activityData, {
+    details: getTextSetting("idleText") || undefined,
     assets: {
       large_image: getAsset({ name: "vscode" }),
+      large_text: getWorkspace(),
+      small_image: getAsset({ name: "vscode" }),
+      small_text: getSmallText(),
     },
   });
-  activityData.details = undefined;
   throttledSetActivity();
 };
 const setFile = (filePath: string, fileName: string, line: number, col: number) => {
+  const showFile = getSetting("showFile");
+  const showLine = getSetting("showLineNumbers");
+
+  let details: string | undefined;
+  if (showFile) {
+    details = showLine ? `${fileName}:${line}:${col}` : fileName;
+  }
+
   Object.assign(activityData, {
-    details: `${fileName}:${line}:${col}`,
+    details,
     assets: {
-      large_image: getAsset({ fileName, filePath }),
+      large_image: showFile ? getAsset({ fileName, filePath }) : getAsset({ name: "vscode" }),
+      large_text: getWorkspace(),
       small_image: getAsset({ name: "vscode" }),
+      small_text: getSmallText(),
     },
   });
   throttledSetActivity();
 };
 const setNotebook = (cell: number, totalCells: number) => {
+  const showFile = getSetting("showFile");
+  const showLine = getSetting("showLineNumbers");
+
+  let details: string | undefined;
+  if (showFile) {
+    details = showLine ? `Cell ${cell} of ${totalCells}` : "Notebook";
+  }
+
   Object.assign(activityData, {
-    details: `Cell ${cell} of ${totalCells}`,
+    details,
     assets: {
       large_image: getAsset({ name: "python" }),
+      large_text: getWorkspace(),
       small_image: getAsset({ name: "vscode" }),
+      small_text: getSmallText(),
     },
   });
   throttledSetActivity();
@@ -121,3 +164,11 @@ vscode.window.onDidChangeTextEditorSelection(updateActivity);
 
 vscode.window.onDidChangeActiveNotebookEditor(updateActivity);
 vscode.window.onDidChangeNotebookEditorSelection(updateActivity);
+
+vscode.workspace.onDidChangeWorkspaceFolders(updateActivity);
+
+vscode.workspace.onDidChangeConfiguration((e) => {
+  if (e.affectsConfiguration(CONFIG_SECTION)) {
+    updateActivity();
+  }
+});
