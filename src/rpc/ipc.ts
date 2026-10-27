@@ -42,8 +42,13 @@ const pathList = [
       return path.join(prefix, "snap.discord", `discord-ipc-${id}`);
     },
   },
-  // Linux (Flatpak)
-  {
+  // Linux (Flatpak: Discord, Canary, PTB, Vesktop)
+  ...[
+    "com.discordapp.Discord",
+    "com.discordapp.DiscordCanary",
+    "com.discordapp.DiscordPTB",
+    "dev.vencord.Vesktop",
+  ].map((app) => ({
     platform: ["linux"],
     format: (id: number): string => {
       const {
@@ -51,15 +56,15 @@ const pathList = [
       } = process;
 
       const prefix = fs.realpathSync(XDG_RUNTIME_DIR ?? TMPDIR ?? TMP ?? TEMP ?? `${path.sep}tmp`);
-      return path.join(prefix, "app", "com.discordapp.Discord", `discord-ipc-${id}`);
+      return path.join(prefix, "app", app, `discord-ipc-${id}`);
     },
-  },
+  })),
 ];
 
 const createSocket = async (path: string): Promise<net.Socket> => {
   return new Promise((resolve, reject) => {
     const onError = () => {
-      socket.removeListener("conect", onConnect);
+      socket.removeListener("connect", onConnect);
       reject();
     };
 

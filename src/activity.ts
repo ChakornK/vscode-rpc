@@ -33,10 +33,13 @@ const throttledSetActivity = () => {
   client.setActivity(activityData);
 };
 
+const getWorkspace = () => (vscode.workspace.name ? `Workspace: ${vscode.workspace.name}`.slice(0, 128) : undefined);
+
 const setIdle = () => {
   Object.assign(activityData, {
     assets: {
       large_image: getAsset({ name: "vscode" }),
+      large_text: getWorkspace(),
     },
   });
   activityData.details = undefined;
@@ -47,7 +50,9 @@ const setFile = (filePath: string, fileName: string, line: number, col: number) 
     details: `${fileName}:${line}:${col}`,
     assets: {
       large_image: getAsset({ fileName, filePath }),
+      large_text: getWorkspace(),
       small_image: getAsset({ name: "vscode" }),
+      small_text: "Visual Studio Code",
     },
   });
   throttledSetActivity();
@@ -57,7 +62,9 @@ const setNotebook = (cell: number, totalCells: number) => {
     details: `Cell ${cell} of ${totalCells}`,
     assets: {
       large_image: getAsset({ name: "python" }),
+      large_text: getWorkspace(),
       small_image: getAsset({ name: "vscode" }),
+      small_text: "Visual Studio Code",
     },
   });
   throttledSetActivity();
@@ -121,3 +128,5 @@ vscode.window.onDidChangeTextEditorSelection(updateActivity);
 
 vscode.window.onDidChangeActiveNotebookEditor(updateActivity);
 vscode.window.onDidChangeNotebookEditorSelection(updateActivity);
+
+vscode.workspace.onDidChangeWorkspaceFolders(updateActivity);

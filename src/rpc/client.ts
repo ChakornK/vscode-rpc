@@ -188,16 +188,15 @@ export class Client extends EventEmitter {
       }
     }
 
-    if (activity.type) {
-      cleaned.type = activity.type;
-      if ([ActivityType.Playing, ActivityType.Listening, ActivityType.Watching, ActivityType.Competing].includes(cleaned.type)) {
-        cleaned.type = ActivityType.Playing;
-      }
+    if (activity.type !== undefined) {
+      cleaned.type = [ActivityType.Playing, ActivityType.Listening, ActivityType.Watching, ActivityType.Competing].includes(activity.type)
+        ? activity.type
+        : ActivityType.Playing;
     }
 
     await this.#request("SET_ACTIVITY", {
       pid: pid ?? process ? process.pid ?? 0 : 0,
-      activity,
+      activity: cleaned,
     });
   }
 
